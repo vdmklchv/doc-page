@@ -17,12 +17,7 @@ body    {
     position: relative;
 }
 
-h1  {
-    font-size: 32px;
-    padding: 10px 0;
-}
-
-h2  {
+header  {
     font-size: 27px;
     padding: 10px 0;
 }
@@ -73,7 +68,7 @@ pre {
     text-align: center;
 }
 
-#navbar h1  {
+#navbar header  {
     text-align: center;
     border-right: gray 1px solid;
 }

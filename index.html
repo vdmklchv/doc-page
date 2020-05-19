@@ -16,7 +16,7 @@
             <div class="menu-icon-bar"></div>
         </div></label>
         <nav id="navbar">
-            <h1 class="main-menu-header">CSS Layout Documentation</h1>
+            <header class="main-menu-header">CSS Layout Documentation</header>
             <a href="#main-doc" class="nav-link">Home</a>
             <a href="index.html#Normal_Flow" class="nav-link">Normal flow</a>
             <a href="#The_display_property" class="nav-link">The display property</a>
@@ -31,7 +31,7 @@
 
         <main id="main-doc">
             <section class="main-section" id="Introduction_to_CSS_Layout">
-                <h1>Introduction to CSS Layout</h1>
+                <header>Introduction to CSS Layout</header>
                 <p>This article will recap some of the CSSlayout features we've already touched upon in previous modules — such as different display values — and introduce some of the concepts we'll be covering throughout this module.</p>
                 <p>CSS page layout techniques allow us to take elements contained in a web page and control where they are positioned relative to their default position in normal layout flow, the other elements around them, their parent container, or the main viewport/window.  The page layout techniques we'll be covering in more detail in this module are:</p>
                 <ul class="unordered-list">
@@ -47,7 +47,7 @@
                 <p>Each technique has its uses, advantages,and disadvantages, and no technique is designed to be used in isolation. By understanding what each method is designed for you will be in a good place to understand which is the best layout tool for each task.</p>
             </section>
             <section class="main-section" id="Normal_Flow">
-                <h2>Normal flow</h2>
+                <header>Normal flow</header>
                 <p>Normal flow is how the browser lays out HTML pages by default when you do nothing to control page layout. Let's look at a quick HTML example:</p>
                 <code>
                     <pre>
@@ -73,7 +73,7 @@
             </section>
 
             <section class="main-section" id="The_display_property">
-                <h2>The display property</h2>
+                <header>The display property</header>
                 <p>
                     The main methods of achieving page layout in CSS are all values of the <span class="code-element">display</span> property. This property allows us to change the default way something displays. Everything in normal flow has a value of display, used as the default way that elements they are set on behave. For example, the fact that paragraphs in English display one below the other is due to the fact that they are styled with <span class="code-element">display: block</span>. If you create a link around some text inside a paragraph, that link remains inline with the rest of the text, and doesn’t break onto a new line. This is because the <span class="code-element">&lt;a&gt;</span> element is <span class="code-element">display: inline</span> by default.
                 </p>
@@ -86,7 +86,7 @@
             </section>
 
             <section class="main-section" id="flexbox">
-                <h2>Flexbox</h2>
+                <header>Flexbox</header>
                 <p>
                     Flexbox is the short name for the Flexible Box Layout Module, designed to make it easy for us to lay things out in one dimension — either as a row or as a column. To use flexbox, you apply <span class="code-element">display: flex</span> to the parent element of the elements you want to lay out; all its direct children then become flex items. We can see this in a simple example.
                 </p>
@@ -142,7 +142,7 @@
             </section>
 
             <section class="main-section" id="Grid_Layout">
-                <h2>Grid Layout</h2>
+                <header>Grid Layout</header>
                 <p>
                     While flexbox is designed for one-dimensional layout, Grid Layout is designed for two dimensions — lining things up in rows and columns.
                 </p>
@@ -214,7 +214,7 @@
             </section>
 
             <section class="main-section" id="Floats">
-                <h2>Floats</h2>
+                <header>Floats</header>
                 <p>
                     Floating an element changes the behavior of that element and the block level elements that follow it in normal flow. The element is moved to the left or right and removed from normal flow, and the surrounding content floats around the floated item.
                 </p>
@@ -260,7 +260,7 @@
             </section>
 
             <section class="main-section" id="Positioning_techniques">
-                <h2>Positioning techniques</h2>
+                <header>Positioning techniques</header>
                 <p>
                     Positioning allows you to move an element from where it would be placed when in normal flow to another location. Positioning isn’t a method for creating your main page layouts, it is more about managing and fine-tuning the position of specific items on the page.
                 </p>
@@ -410,7 +410,7 @@
             </section>
             
             <section class="main-section" id="Table_layout">
-                <h2>Table layout</h2>
+                <header>Table layout</header>
                 <p>
                     HTML tables are fine for displaying tabular data, but many years ago — before even basic CSS was supported reliably across browsers — web developers used to also use tables for entire web page layouts — putting their headers, footers, different columns, etc. in various table rows and columns. This worked at the time, but it has many problems — table layouts are inflexible, very heavy on markup, difficult to debug, and semantically wrong (e.g., screen reader users have problems navigating table layouts).
                 </p>
@@ -490,7 +490,7 @@
             </section>
 
             <section class="main-section borderless" id="Multi-column_layout">
-                <h2>Multi-column layout</h2>
+                <header>Multi-column layout</header>
                 <p>
                     The multi-column layout module gives us a way to lay out content in columns, similar to how text flows in a newspaper. While reading up and down columns is less useful in a web context as you don’t want to force users to scroll up and down, arranging content into columns can be a useful technique.
                 </p>
