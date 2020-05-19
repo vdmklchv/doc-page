@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Layouts</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="content">
+        <input type="checkbox" id="toggler">
+        <label for="toggler"><div id="menu-icon">
+            <div class="menu-icon-bar"></div>
+            <div class="menu-icon-bar"></div>
+            <div class="menu-icon-bar"></div>
+        </div></label>
+        <nav id="navbar">
+            <h1 class="main-menu-header">CSS Layout Documentation</h1>
+            <a href="#main-doc" class="nav-link">Home</a>
+            <a href="index.html#Normal_Flow" class="nav-link">Normal flow</a>
+            <a href="#The_display_property" class="nav-link">The display property</a>
+            <a href="#flexbox" class="nav-link">Flexbox</a>
+            <a href="#Grid_Layout" class="nav-link">Grid layout</a>
+            <a href="#Floats" class="nav-link">Floats</a>
+            <a href="#Positioning_techniques" class="nav-link">Positioning techniques</a>
+            <a href="#Table_layout" class="nav-link">Table layout</a>
+            <a href="#Multi-column_layout" class="nav-link">Multi-column layout</a>
+        </nav>
+        
+
+        <main id="main-doc">
+            <section class="main-section" id="Introduction_to_CSS_Layout">
+                <h1>Introduction to CSS Layout</h1>
+                <p>This article will recap some of the CSSlayout features we've already touched upon in previous modules — such as different display values — and introduce some of the concepts we'll be covering throughout this module.</p>
+                <p>CSS page layout techniques allow us to take elements contained in a web page and control where they are positioned relative to their default position in normal layout flow, the other elements around them, their parent container, or the main viewport/window.  The page layout techniques we'll be covering in more detail in this module are:</p>
+                <ul class="unordered-list">
+                    <li>Normal flow</li>
+                    <li>The display property</li>
+                    <li>Flexbox</li>
+                    <li>Grid</li>
+                    <li>Floats</li>
+                    <li>Positioning</li>
+                    <li>Table layout</li>
+                    <li>Multiple-column layout</li>
+                </ul>
+                <p>Each technique has its uses, advantages,and disadvantages, and no technique is designed to be used in isolation. By understanding what each method is designed for you will be in a good place to understand which is the best layout tool for each task.</p>
+            </section>
+            <section class="main-section" id="Normal_Flow">
+                <h2>Normal flow</h2>
+                <p>Normal flow is how the browser lays out HTML pages by default when you do nothing to control page layout. Let's look at a quick HTML example:</p>
+                <code>
+                    <pre>
+                    &lt;p&gt;I love my cat.&lt;/p&gt;<br>
+        
+                    &lt;ul&gt;<br>
+                        &lt;li&gt;Buy cat food&lt;/li&gt;<br>
+                        &lt;li&gt;Exercise&lt;/li&gt;<br>
+                        &lt;li&gt;Cheer up friend&lt;/li&gt;<br>
+                    &lt;/ul&gt;<br>
+        
+                    &lt;p&gt;The end!&lt/p&gt;
+                    </pre>
+                </code>
+                <p>Note here how the HTML is displayed in the exact order in which it appears in the source code, with elements stacked up on top of one another — the first paragraph, followed by the unordered list, followed by the second paragraph.
+                </p>
+                <p>
+                    The elements that appear one below the other are described as block elements, in contrast to inline elements, which appear one beside the other, like the individual words in a paragraph.
+                </p>
+                <p>
+                    For many of the elements on your page the normal flow will create exactly the layout you need, however for more complex layouts you will need to alter this default behavior using some of the tools available to you in CSS. Starting with a well-structured HTML document is very important, as you can then work with the way things are laid out by default rather than fighting against it.
+                </p>
+            </section>
+
+            <section class="main-section" id="The_display_property">
+                <h2>The display property</h2>
+                <p>
+                    The main methods of achieving page layout in CSS are all values of the <span class="code-element">display</span> property. This property allows us to change the default way something displays. Everything in normal flow has a value of display, used as the default way that elements they are set on behave. For example, the fact that paragraphs in English display one below the other is due to the fact that they are styled with <span class="code-element">display: block</span>. If you create a link around some text inside a paragraph, that link remains inline with the rest of the text, and doesn’t break onto a new line. This is because the <span class="code-element">&lt;a&gt;</span> element is <span class="code-element">display: inline</span> by default.
+                </p>
+                <p>
+                    You can change this default display behavior. For example, the <span class="code-element">&lt;li&gt;</span> element is <span class="code-element">display: block</span> by default, meaning that list items display one below the other in our English document. If we change the display value to inline they now display next to each other, as words would do in a sentence. The fact that you can change the value of display for any element means that you can pick HTML elements for their semantic meaning, without being concerned about how they will look. The way they look is something that you can change.
+                </p>
+                <p>
+                    In addition to being able to change the default presentation by turning an item from block to inline and vice versa, there are some bigger layout methods that start out as a value of display. However, when using these, you will generally need to invoke additional properties. The two values most important for our purposes when discussing layout are <span class="code-element">display: flex</span> and <span class="display-element">display: grid.</span>
+                </p>
+            </section>
+
+            <section class="main-section" id="flexbox">
+                <h2>Flexbox</h2>
+                <p>
+                    Flexbox is the short name for the Flexible Box Layout Module, designed to make it easy for us to lay things out in one dimension — either as a row or as a column. To use flexbox, you apply <span class="code-element">display: flex</span> to the parent element of the elements you want to lay out; all its direct children then become flex items. We can see this in a simple example.
+                </p>
+                <p>
+                    The HTML markup below gives us a containing element, with a class of wrapper, inside which are three  elements. By default these would display as block elements, below one another, in our English language document.
+                </p>
+                <p>
+                    However, if we add <span class="code-element">display: flex</span> to the parent, the three items now arrange themselves into columns. This is due to them becoming flex items and being affected by some initial values that flexbox sets on the flex container. They are displayed in a row, because the initial value of flex-direction set on their parent is row. They all appear to stretch to the height of the tallest item, because the initial value of the align-items property set on their parent is stretch. This means that the items stretch to the height of the flex container, which in this case is defined by the tallest item. The items all line up at the start of the container, leaving any extra space at the end of the row.
+                </p>
+                <code>
+                    <pre>
+                        .wrapper {
+                            display: flex;
+                        }
+                    </pre>
+                </code>
+            
+                <code>
+                    <pre>
+                        &lt;div class="wrapper"&gt;<br>
+                            &lt;div class="box1"&gt;One&lt;/div&gt;<br>
+                            &lt;div class="box2"&gt;Two&lt;/div&gt;<br>
+                            &lt;div class="box3"&gt;Three&lt;/div&gt;<br>
+                        &lt;/div&gt;
+                    </pre>
+                </code>
+                <p>
+                    In addition to the above properties that can be applied to the flex container, there are properties that can be applied to the flex items. These properties, among other things, can change the way that the items flex, enabling them to expand and contract to fit into the available space.
+                </p>
+                <p>
+                    As a simple example of this, we can add the <span class="code-element">flex</span> property to all of our child items, with a value of 1. This will cause all of the items to grow and fill the container, rather than leaving space at the end. If there is more space then the items will become wider; if there is less space they will become narrower. In addition, if you add another element to the markup the items will all become smaller to make space for it — they will adjust size to take up the same amount of space, whatever that is.
+                </p>
+                <code>
+                    <pre>
+                        .wrapper {
+                            display: flex;
+                        }
+                        
+                        .wrapper > div {
+                            flex: 1;
+                        }
+                    </pre>
+                </code>
+                <code>
+                    <pre>
+                        &lt;div class="wrapper"&gt;<br>
+                            &lt;div class="box1"&gt;One&lt;/div&gt;<br>
+                            &lt;div class="box2"&gt;Two&lt;/div&gt;<br>
+                            &lt;div class="box3"&gt;Three&lt;/div&gt;<br>
+                        &lt;/div&gt;
+                    </pre>
+                </code>
+            </section>
+
+            <section class="main-section" id="Grid_Layout">
+                <h2>Grid Layout</h2>
+                <p>
+                    While flexbox is designed for one-dimensional layout, Grid Layout is designed for two dimensions — lining things up in rows and columns.
+                </p>
+                <p>
+                    Once again, you can switch on Grid Layout with a specific value of display — <span class="code-element">display: grid</span>. The below example uses similar markup to the flex example, with a container and some child elements. In addition to using <span class="code-element">display: grid</span>, we are also defining some row and column tracks on the parent using the <span class="code-element">grid-template-rows</span> and <span class="code-element">grid-template-columns</span> properties respectively. We've defined three columns each of 1fr and two rows of 100px. I don’t need to put any rules on the child elements; they are automatically placed into the cells our grid has created.
+                </p>
+                <code>
+                    <pre>
+                        .wrapper {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            grid-template-rows: 100px 100px;
+                            grid-gap: 10px;
+                        }
+                    </pre>
+                </code>
+                <code>
+                    <pre>
+                        &lt;div class="wrapper"&gt;<br>
+                            &lt;div class="box1"&gt;One&lt;/div&gt;<br>
+                            &lt;div class="box2"&gt;Two&lt;/div&gt;<br>
+                            &lt;div class="box3"&gt;Three&lt;/div&gt;<br>
+                            &lt;div class="box4"&gt;Four&lt;/div&gt;<br>
+                            &lt;div class="box5"&gt;Five&lt;/div&gt;<br>
+                            &lt;div class="box6"&gt;Six&lt;/div&gt;<br>
+                        &lt;/div&gt;
+                    </pre>
+                </code>
+                <p>
+                    Once you have a grid, you can explicitly place your items on it, rather than relying on the auto-placement behavior seen above. In the second example below we have defined the same grid, but this time with three child items. We've set the start and end line of each item using the <span class="code-element">grid-column</span> and <span class="code-element">grid-row</span> properties. This causes the items to span multiple tracks.
+                </p>
+                <code>
+                    <pre>
+                        .wrapper {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            grid-template-rows: 100px 100px;
+                            grid-gap: 10px;
+                        }
+                        
+                        .box1 {
+                            grid-column: 2 / 4;
+                            grid-row: 1;
+                        }
+                        
+                        .box2 {
+                            grid-column: 1;
+                            grid-row: 1 / 3;
+                        }
+                        
+                        .box3 {
+                            grid-row: 2;
+                            grid-column: 3;
+                        }
+                    </pre>
+                </code>
+                <code>
+                    <pre>
+                        &lt;div class="wrapper"&gt;<br>
+                            &lt;div class="box1"&gt;One&lt;/div&gt;<br>
+                            &lt;div class="box2"&gt;Two&lt;/div&gt;<br>
+                            &lt;div class="box3"&gt;Three&lt;/div&gt;<br>
+                        &lt;/div&gt;
+                    </pre>
+                </code>
+                <p>
+                    The rest of this guide covers other layout methods, which are less important for the main layout structures of your page but can still help you achieve specific tasks. By understanding the nature of each layout task, you will soon find that when you look at a particular component of your design the type of layout best suited to it will often be clear.
+                </p>
+            </section>
+
+            <section class="main-section" id="Floats">
+                <h2>Floats</h2>
+                <p>
+                    Floating an element changes the behavior of that element and the block level elements that follow it in normal flow. The element is moved to the left or right and removed from normal flow, and the surrounding content floats around the floated item.
+                </p>
+                <p>
+                    The float property has four possible values:
+                </p>
+                <ul class="unordered-list">
+                    <li>
+                        <strong>left</strong> — Floats the element to the left.
+                    </li>
+                    <li>
+                        <strong>right</strong> — Floats the element to the right.
+                    </li>
+                    <li>
+                        <strong>none</strong> — Specifies no floating at all. This is the default value.
+                    </li>
+                    <li>
+                        <strong>inherit</strong> — Specifies that the value of the float property should be inherited from the element's parent element.
+                    </li>
+                </ul>
+                <p>
+                    In the example below we float a <span class="code-element">&lt;div&gt;</span> left, and give it a margin on the right to push the text away from the element. This gives us the effect of text wrapped around that box, and is most of what you need to know about floats as used in modern web design.
+                </p>
+                <code>
+                    <pre>
+                        &lt;h1&gt;Simple float example&lt;/h1&gt;<br>
+        
+                        &lt;div class="box"&gt;Float&lt;/div&gt;<br>
+                            
+                        &lt;p&gt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla luctus aliquam dolor, eu lacinia lorem placerat vulputate. Duis felis orci, pulvinar id metus ut, rutrum luctus orci. Cras porttitor imperdiet nunc, at ultricies tellus laoreet sit amet. Sed auctor cursus massa at porta. Integer ligula ipsum, tristique sit amet orci vel, viverra egestas ligula. Curabitur vehicula tellus neque, ac ornare ex malesuada et. In vitae convallis lacus. Aliquam erat volutpat. Suspendisse ac imperdiet turpis. Aenean finibus sollicitudin eros pharetra congue. Duis ornare egestas augue ut luctus. Proin blandit quam nec lacus varius commodo et a urna. Ut id ornare felis, eget fermentum sapien.&lt;/p&gt;<br>
+                    </pre>
+                </code>
+                <code>
+                    <pre>
+                        .box {
+                            float: left;
+                            width: 150px;
+                            height: 150px;
+                            margin-right: 30px;
+                        }
+                    </pre>
+                </code>
+            </section>
+
+            <section class="main-section" id="Positioning_techniques">
+                <h2>Positioning techniques</h2>
+                <p>
+                    Positioning allows you to move an element from where it would be placed when in normal flow to another location. Positioning isn’t a method for creating your main page layouts, it is more about managing and fine-tuning the position of specific items on the page.
+                </p>
+                <p>
+                    There are however useful techniques for certain layout patterns that rely on the position property. Understanding positioning also helps in understanding normal flow, and what it is to move an item out of normal flow.
+                </p>
+                <p>
+                    There are five types of positioning you should know about:
+                </p>
+                <ul class="unordered-list">
+                    <li>
+                        <strong>Static</strong> positioning is the default that every element gets — it just means "put the element into its normal position in the document layout flow — nothing special to see here".
+                    </li>
+                    <li>
+                        <strong>Relative</strong> positioning allows you to modify an element's position on the page, moving it relative to its position in normal flow — including making it overlap other elements on the page.
+                    </li>
+                    <li>
+                        <strong>Absolute</strong> positioning moves an element completely out of the page's normal layout flow, like it is sitting on its own separate layer. From there, you can fix it in a position relative to the edges of the page's <span class="code-element">&lt;html&gt;</span> element (or its nearest positioned ancestor element). This is useful for creating complex layout effects such as tabbed boxes where different content panels sit on top of one another and are shown and hidden as desired, or information panels that sit off screen by default, but can be made to slide on screen using a control button.
+                    </li>
+                    <li>
+                        <strong>Fixed</strong> positioning is very similar to absolute positioning, except that it fixes an element relative to the browser viewport, not another element. This is useful for creating effects such as a persistent navigation menu that always stays in the same place on the screen as the rest of the content scrolls.
+                    </li>
+                    <li>
+                        <strong>Sticky</strong> positioning is a newer positioning method which makes an element act like position: static until it hits a defined offset from the viewport, at which point it acts like position: fixed.
+                    </li>
+                </ul>
+                <p>
+                    To provide familiarity with these page layout techniques, we'll show you a couple of quick examples. Our examples will all feature the same HTML, which is as follows:
+                </p>
+                <code>
+                    <pre>
+                        &lt;h1&gt;Positioning&lt;/h1&gt;<br>
+                        &lt;p&gt;I am a basic block level element.&lt;/p&gt;<br>
+                        &lt;p class="positioned"&gt;I am a basic block level element.&lt;/p&gt;<br>
+                        &lt;p&gt;I am a basic block level element.&lt;/p&gt;<br>
+                    </pre>
+                </code>
+                <p>
+                    This HTML will be styled by default using the following CSS:
+                </p>
+                <code>
+                    <pre>
+                        body {
+                            width: 500px;
+                            margin: 0 auto;
+                        }
+                        
+                        p {
+                            background-color: rgb(207,232,220);
+                            border: 2px solid rgb(79,185,227);
+                            padding: 10px;
+                            margin: 10px;
+                            border-radius: 5px;
+                        }
+                    </pre>
+                </code>
+                <h3>Relative positioning</h3>
+                <p>
+                    Relative positioning allows you to offset an item from the position in normal flow it would have by default. This means you could achieve a task such as moving an icon down a bit so it lines up with a text label. To do this, we could add the following rule to add relative positioning:
+                </p>
+                <code>
+                    <pre>
+                        .positioned {
+                            position: relative;
+                            top: 30px;
+                            left: 30px;
+                        }
+                    </pre>
+                </code>
+                <p>
+                    Here we give our middle paragraph a position value of <span class="code-element">relative</span> — this doesn't do anything on its own, so we also add <span class="code-element">top</span> and <span class="code-element">left</span> properties. These serve to move the affected element down and to the right — this might seem like the opposite of what you were expecting, but you need to think of it as the element being pushed on its left and top sides, which result in it moving right and down.
+                </p>
+                <p>
+                    Adding this code will give the following result:
+                </p>
+                <code>
+                    <pre>
+                        .positioned {
+                            position: relative;
+                            background: rgba(255,84,104,.3);
+                            border: 2px solid rgb(255,84,104);
+                            top: 30px;
+                            left: 30px;
+                        }
+                    </pre>
+                </code>
+                <h3>Absolute positioning</h3>
+                <p>
+                    Absolute positioning is used to completely remove an element from normal flow, and place it using offsets from the edges of a containing block.
+                </p>
+                <p>
+                    Going back to our original non-positioned example, we could add the following CSS rule to implement absolute positioning:
+                </p>
+                <code>
+                    <pre>
+                        .positioned {
+                            position: absolute;
+                            top: 30px;
+                            left: 30px;
+                        }
+                    </pre>
+                </code>
+                <p>
+                    Here we give our middle paragraph a position value of <span class="code-element">absolute</span>, and the same <span class="code-element">top</span> and <span class="code-element"></span>left</span> properties as before. Adding this code, however, will give the following result:
+                </p>
+                <code>
+                    <pre>
+                        .positioned {
+                            position: absolute;
+                            background: rgba(255,84,104,.3);
+                            border: 2px solid rgb(255,84,104);
+                            top: 30px;
+                            left: 30px;
+                        }
+                    </pre>
+                </code>
+                <p>
+                    This is very different! The positioned element has now been completely separated from the rest of the page layout and sits over the top of it. The other two paragraphs now sit together as if their positioned sibling doesn't exist. The <span class="code-element">top</span> and <span class="code-element">left</span> properties have a different effect on absolutely positioned elements than they do on relatively positioned elements. In this case the offsets have been calculated from the top and left of the page. It is possible to change the parent element that becomes this container and we will take a look at that in the lesson on positioning.
+                </p>
+                <h3>Fixed positioning</h3>
+                <p>
+                    Fixed positioning removes our element from document flow in the same way as absolute positioning. However, instead of the offsets being applied from the container, they are applied from the viewport. As the item remains fixed in relation to the viewport we can create effects such as a menu which remains fixed as the page scrolls beneath it.
+                </p>
+                <p>
+                    For this example our HTML is three paragraphs of text, in order that we can cause the page to scroll, and a box to which we will give position: fixed.
+                </p>
+                <code>
+                    <pre>
+                        &lt;h1&gt;Fixed positioning&lt;/h1&gt;<br>
+
+                        &lt;div class="positioned"&gt;Fixed&lt;/div&gt;<br>
+
+                        &lt;p&gt;Paragraph 1.&lt;/p&gt;<br>
+                        &lt;p&gt;Paragraph 2.&lt;/p&gt;<br>
+                        &lt;p&gt;Paragraph 3.&lt;/p&gt;
+                    </pre>
+                </code>
+                <code>
+                    <pre>
+                        .positioned {
+                            position: fixed;
+                            top: 30px;
+                            left: 30px;
+                        }
+                    </pre>
+                </code>
+            </section>
+            
+            <section class="main-section" id="Table_layout">
+                <h2>Table layout</h2>
+                <p>
+                    HTML tables are fine for displaying tabular data, but many years ago — before even basic CSS was supported reliably across browsers — web developers used to also use tables for entire web page layouts — putting their headers, footers, different columns, etc. in various table rows and columns. This worked at the time, but it has many problems — table layouts are inflexible, very heavy on markup, difficult to debug, and semantically wrong (e.g., screen reader users have problems navigating table layouts).
+                </p>
+                <p>
+                    The way that a table looks on a webpage when you use table markup is due to a set of CSS properties that define table layout. These properties can be used to lay out elements that are not tables, a use which is sometimes described as "using CSS tables".
+                </p>
+                <p>
+                    The example below shows one such use; using CSS tables for layout should be considered a legacy method at this point, for those situations where you have very old browsers without support for Flexbox or Grid.
+                </p>
+                <p>
+                    Let's look at an example. First, some simple markup that creates an HTML form. Each input element has a label, and we've also included a caption inside a paragraph. Each label/input pair is wrapped in a <span class="code-element">&lt;div&gt;</span>, for layout purposes.
+                </p>
+                <code>
+                    <pre>
+                        &lt;form&gt;<br>
+                            &lt;p&gt;First of all, tell us your name and age.&lt;/p&gt;<br>
+                            &lt;div&gt;<br>
+                            &lt;label for="fname"&gt;First name:&lt;/label&gt;<br>
+                            &lt;input type="text" id="fname"&gt;<br>
+                            &lt;/div&gt;<br>
+                            &lt;div&gt;<br>
+                            &lt;label for="lname"&gt;Last name:&lt;/label&gt;<br>
+                            &lt;input type="text" id="lname"&gt;<br>
+                            &lt;/div&gt;<br>
+                            &lt;div&gt;<br>
+                            &lt;abel for="age"&gt;Age:&lt;/label&gt;<br>
+                            &lt;input type="text" id="age"&gt;<br>
+                            &lt;/div&gt;<br>
+                        &lt;/form&gt;
+                    </pre>
+                </code>
+                <p>
+                    Now, the CSS for our example. Most of the CSS is fairly ordinary, except for the uses of the <span class="code-element">display</span> property. The <span class="code-element">&lt;form&gt;</span>, <span class="code-element">&lt;div&gt;</span>s, and <span class="code-element">&lt;label&gt;</span>s and <span class="code-element">&lt;input&gt;</span>s have been told to display like a table, table rows, and table cells respectively — basically, they'll act like HTML table markup, causing the labels and inputs to line up nicely by default. All we then have to do is add a bit of sizing, margin, etc. to make everything look a bit nicer and we're done.
+                </p>
+                <p>
+                    You'll notice that the caption paragraph has been given <span class="code-element">display: table-caption;</span> — which makes it act like a table <span class="code-element">&lt;caption&gt;</span> — and <span class="code-element">caption-side: bottom;</span> to tell the caption to sit on the bottom of the table for styling purposes, even though the markup is before the <span class="code-element">&lt;input&gt;</span> elements in the source. This allows for a nice bit of flexibility.
+                </p>
+                <code>
+                    <pre>
+                        html {
+                            font-family: sans-serif;
+                        }
+                        
+                        form {
+                            display: table;
+                            margin: 0 auto;
+                        }
+                        
+                        form div {
+                            display: table-row;
+                        }
+                        
+                        form label, form input {
+                            display: table-cell;
+                            margin-bottom: 10px;
+                        }
+                        
+                        form label {
+                            width: 200px;
+                            padding-right: 5%;
+                            text-align: right;
+                        }
+                        
+                        form input {
+                            width: 300px;
+                        }
+                        
+                        form p {
+                            display: table-caption;
+                            caption-side: bottom;
+                            width: 300px;
+                            color: #999;
+                            font-style: italic;
+                        }
+                    </pre>
+                </code>
+            </section>
+
+            <section class="main-section borderless" id="Multi-column_layout">
+                <h2>Multi-column layout</h2>
+                <p>
+                    The multi-column layout module gives us a way to lay out content in columns, similar to how text flows in a newspaper. While reading up and down columns is less useful in a web context as you don’t want to force users to scroll up and down, arranging content into columns can be a useful technique.
+                </p>
+                <p>
+                    To turn a block into a multicol container we use either the <span class="code-element">column-count</span> property, which tells the browser how many columns we would like to have, or the <span class="code-element">column-width</span> property, which tells the browser to fill the container with as many columns of at least that width.
+                </p>
+                <p>
+                    In the below example we start with a block of HTML inside a containing <span class="code-element">&lt;div&gt;</span> element with a class of container.
+                </p>
+                <code>
+                    <pre>
+                        &lt;div class="container"&gt;<br>
+                            &lt;h1&gt;Multi-column layout&lt;/h1&gt;<br>
+                            
+                            &lt;p&gt;Paragraph 1.&lt;/p&gt;<br>
+                            &lt;p&gt;Paragraph 2.&lt;/p&gt;<br>
+                        
+                        &lt;div&gt;
+                    </pre>
+                </code>
+                <p>
+                    We are using a column-width of 200 pixels on that container, causing the browser to create as many 200-pixel columns as will fit in the container and then share the remaining space between the created columns.
+                </p>
+                <code>
+                    <pre>
+                        .container {
+                            column-width: 200px;
+                        }
+                    </pre>
+                </code>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
